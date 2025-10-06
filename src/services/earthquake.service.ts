@@ -8,7 +8,7 @@ export class EarthquakeService {
       return parseEQList(res.data);
    }
 
-   async getDetail(url: string) {
+   async getDetails(url: string) {
       const res = await axiosInstance.get(env.PHIVOLCS_EQ_URL + url);
       return parseEQDetail(res.data);
    }

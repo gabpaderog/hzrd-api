@@ -1,5 +1,5 @@
 import asyncHandler from "../middlewares/async.middleware";
-import { EarthquakeService } from "../services/earthquake.services";
+import { EarthquakeService } from "../services/earthquake.service";
 import { Request, Response } from "express";
 
 export class EarthquakeController {
@@ -16,13 +16,13 @@ export class EarthquakeController {
       });
    });
 
-   getDetail = asyncHandler(async (req: Request, res: Response) => {
+   getDetails = asyncHandler(async (req: Request, res: Response) => {
       const { url } = req.query;
       if(!url || typeof url !== 'string') {
          return res.status(400).json({ message: "Invalid URL parameter" });
       }
 
-      const response = await this.earthquakeService.getDetail(url)
+      const response = await this.earthquakeService.getDetails(url)
       res.status(200).json({
          success: true,
          data: response
