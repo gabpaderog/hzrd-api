@@ -1,0 +1,1 @@
+export {default as earthquakeRoutes} from './earthquake.route';
