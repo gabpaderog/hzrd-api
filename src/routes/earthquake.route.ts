@@ -6,8 +6,8 @@ const router = Router();
 const earthquakeService = new EarthquakeService();
 const earthquakeController = new EarthquakeController(earthquakeService);
 
-router.get("/latest", earthquakeController.getLatest);
-router.get("/details", earthquakeController.getDetails)
-router.get("/:year/:month", earthquakeController.getMonthly);
+router.get("/", earthquakeController.getEQList);
+router.get("/:id", earthquakeController.getEQById);
+
 
 export default router;

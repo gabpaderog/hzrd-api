@@ -7,8 +7,10 @@ export class EarthquakeController {
       private earthquakeService: EarthquakeService
    ){}
 
-   getLatest = asyncHandler(async (req: Request, res: Response) => {
-      const response = await this.earthquakeService.getLatest();
+   getEQList = asyncHandler(async (req: Request, res: Response) => {
+      const { date } = req.query as {date?: string};
+
+      const response = await this.earthquakeService.getEQList(date);
 
       res.status(200).json({
          success: true,
@@ -16,26 +18,10 @@ export class EarthquakeController {
       });
    });
 
-   getDetails = asyncHandler(async (req: Request, res: Response) => {
-      const { url } = req.query;
-      if(!url || typeof url !== 'string') {
-         return res.status(400).json({ message: "Invalid URL parameter" });
-      }
+   getEQById = asyncHandler(async (req: Request, res: Response) => {
+      const { id } = req.params;
 
-      const response = await this.earthquakeService.getDetails(url)
-      res.status(200).json({
-         success: true,
-         data: response
-      });
-   });
-
-   getMonthly = asyncHandler(async (req: Request, res: Response) => {
-      const { year, month } = req.params;
-      if(!year || !month) {
-         return res.status(400).json({ message: "Year and month parameters are required" });
-      }
-
-      const response = await this.earthquakeService.getMonthly(year, month);
+      const response = await this.earthquakeService.getEQById(id);
       res.status(200).json({
          success: true,
          data: response

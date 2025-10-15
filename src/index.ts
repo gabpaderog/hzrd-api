@@ -10,10 +10,9 @@ class Server {
 
   public start() {
     this.serverInstance = app.listen(this.port, () => {
-      console.log(`Server is running on port ${this.port}`);
+      console.log(`Server is running on port http://localhost:${this.port}/api/v1`);
     });
 
-    // Bind signals
     process.on("SIGINT", () => this.gracefulShutdown("SIGINT"));
     process.on("SIGTERM", () => this.gracefulShutdown("SIGTERM"));
 
