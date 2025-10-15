@@ -125,9 +125,9 @@ export const parseEQDetail = (html: string): EQDetail => {
         const locations = rawBlock.includes(";")
           ? rawBlock
               .split(";")
-              .map((loc) => loc.trim())
+              .map((loc) => loc.trim().replace(/�/g, "ñ"))
               .filter(Boolean)
-          : [rawBlock];
+          : [rawBlock.replace(/�/g, "ñ")];
 
         groups.push({ intensity, locations });
       }
